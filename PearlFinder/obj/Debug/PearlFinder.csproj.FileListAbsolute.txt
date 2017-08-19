@@ -1,0 +1,11 @@
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\bin\Debug\PearlFinder.exe.config
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\bin\Debug\PearlFinder.exe
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\bin\Debug\PearlFinder.pdb
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\obj\Debug\PearlFinder.csprojResolveAssemblyReference.cache
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\obj\Debug\PearlFinder.Form1.resources
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\obj\Debug\PearlFinder.Properties.Resources.resources
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\obj\Debug\PearlFinder.csproj.GenerateResource.Cache
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\obj\Debug\PearlFinder.exe
+c:\users\james\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\obj\Debug\PearlFinder.pdb
+C:\Users\James\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\bin\Debug\AllPearls.png
+C:\Users\James\documents\visual studio 2017\Projects\PearlFinder\PearlFinder\bin\Debug\PearlPattern.png
