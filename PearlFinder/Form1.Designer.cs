@@ -118,7 +118,10 @@
             this.Controls.Add(this.patternPicbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.allPearlsPicbox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "AAA Pearl Finder";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.allPearlsPicbox)).EndInit();
