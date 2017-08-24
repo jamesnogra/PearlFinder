@@ -46,6 +46,7 @@
             this.allPearlsPicbox.Location = new System.Drawing.Point(13, 13);
             this.allPearlsPicbox.Name = "allPearlsPicbox";
             this.allPearlsPicbox.Size = new System.Drawing.Size(500, 500);
+            this.allPearlsPicbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.allPearlsPicbox.TabIndex = 0;
             this.allPearlsPicbox.TabStop = false;
             // 

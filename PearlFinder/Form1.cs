@@ -23,11 +23,15 @@ namespace PearlFinder
 
         private void findButton_Click(object sender, EventArgs e)
         {
-            int sad, sadThreshold = 10000;
+            int sad, sadThreshold = 3500;
             int totalPattern;
             List<Point> allMatches = new List<Point>();
-            Bitmap testOutput = new Bitmap(pattern.Width, pattern.Height);
             float pctComplete = 0;
+
+            //resizes so that it will scan faster
+            CustomResize(ref source, 3);
+            CustomResize(ref pattern, 3);
+            Bitmap testOutput = new Bitmap(pattern.Width, pattern.Height);
 
             //for the source image
             BitmapData sourceData = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
@@ -84,9 +88,9 @@ namespace PearlFinder
                         //display the moving scanning image
                         testOutput.UnlockBits(scanData);
                         testOutputPicBox.Image = testOutput;
+                        Application.DoEvents(); //this slows down the scan
                         pctComplete = (y)*100 / (source.Height - pattern.Height);
                         progressBar.Value = (int)pctComplete + 1;
-                        Application.DoEvents();
 
                         if (sad < sadThreshold)
                         {
@@ -101,6 +105,7 @@ namespace PearlFinder
 
             source.UnlockBits(sourceData);
             pattern.UnlockBits(patternData);
+
             MessageBox.Show("Done scanning image! Found "+allMatches.Count+" matches.");
             progressBar.Visible = false;
         }
@@ -110,8 +115,8 @@ namespace PearlFinder
             int sizeFactorX = allPearlsPicbox.Width / source.Width;
             int sizeFactorY = allPearlsPicbox.Height / source.Height;
             Graphics g = allPearlsPicbox.CreateGraphics();
-            Pen blackPen = new Pen(ColorTranslator.FromHtml("#33CC33"), 3);
-            g.DrawRectangle(blackPen, x * sizeFactorX, y * sizeFactorY, pattern.Width * sizeFactorX, pattern.Height * sizeFactorY);
+            Pen pen = new Pen(ColorTranslator.FromHtml("#33CC33"), 2);
+            g.DrawRectangle(pen, x * sizeFactorX, y * sizeFactorY, pattern.Width * sizeFactorX, pattern.Height * sizeFactorY);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -166,6 +171,24 @@ namespace PearlFinder
             b.UnlockBits(bmData);
 
             return true;
+        }
+
+        //factor means how much it will be smaller. ex if factor=2, image is 200x200, then resized image is 100x100
+        public void CustomResize(ref Bitmap theImage, int factor)
+        {
+            Color pixel;
+            int newWidth = theImage.Width / factor;
+            int newHeight = theImage.Height / factor;
+            Bitmap resultResize = new Bitmap(newWidth, newHeight);
+            for (int x = 0; x < newWidth; x++)
+            {
+                for (int y = 0; y < newHeight; y++)
+                {
+                    pixel = theImage.GetPixel(x * theImage.Width / newWidth, y * theImage.Height / newHeight);
+                    resultResize.SetPixel(x, y, pixel);
+                }
+            }
+            theImage = new Bitmap(resultResize);
         }
     }
 }
