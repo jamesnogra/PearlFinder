@@ -28,10 +28,9 @@ namespace PearlFinder
             List<Point> allMatches = new List<Point>();
             float pctComplete = 0;
 
-            //resizes so that it will scan faster
-            CustomResize(ref source, 3);
-            CustomResize(ref pattern, 3);
             Bitmap testOutput = new Bitmap(pattern.Width, pattern.Height);
+            allPearlsPicbox.Image = Image.FromFile(@"AllPearls.png");
+            Application.DoEvents();
 
             //for the source image
             BitmapData sourceData = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
@@ -72,11 +71,14 @@ namespace PearlFinder
                         {
                             for (int j=0; j < pattern.Width; ++j)
                             {
+                                if (showScanCheckbox.Checked)
+                                {
+                                    sc[0] = sc[1] = sc[2] = s[0]; //this is for the moving scanning image
+                                    sc += 3;
+                                }
                                 sad += Math.Abs(p[0] - s[0]);
-                                sc[0] = sc[1] = sc[2] = s[0]; //this is for the moving scanning image
                                 p += 3;
                                 s += 3;
-                                sc += 3;
                                 totalPattern += 3;
                             }
                             sc += scanOffset;
@@ -84,18 +86,23 @@ namespace PearlFinder
                             s += source.Width * 3 + sourceOffset - pattern.Width * 3;
                             totalPattern += source.Width * 3 + sourceOffset - pattern.Width * 3;
                         }
-
                         //display the moving scanning image
                         testOutput.UnlockBits(scanData);
-                        testOutputPicBox.Image = testOutput;
-                        Application.DoEvents(); //this slows down the scan
+                        if (showScanCheckbox.Checked)
+                        {
+                            testOutputPicBox.Image = testOutput;
+                            Application.DoEvents(); //this slows down the scan
+                        }
                         pctComplete = (y)*100 / (source.Height - pattern.Height);
                         progressBar.Value = (int)pctComplete + 1;
 
                         if (sad < sadThreshold)
                         {
                             allMatches.Add(new Point(x, y));
-                            drawRectangleAt(x, y);
+                            if (showScanCheckbox.Checked)
+                            {
+                                drawRectangleAt(x, y);
+                            }
                         }
                         s += 3 - totalPattern;
                     }
@@ -106,8 +113,19 @@ namespace PearlFinder
             source.UnlockBits(sourceData);
             pattern.UnlockBits(patternData);
 
+            drawAllMatches(allMatches);
             MessageBox.Show("Done scanning image! Found "+allMatches.Count+" matches.");
             progressBar.Visible = false;
+        }
+
+        private void drawAllMatches(List<Point> allMatches)
+        {
+            allPearlsPicbox.Image = Image.FromFile(@"AllPearls.png");
+            foreach (Point i in allMatches)
+            {
+                Application.DoEvents();
+                drawRectangleAt(i.X, i.Y);
+            }
         }
 
         private void drawRectangleAt(int x, int y)
@@ -127,6 +145,9 @@ namespace PearlFinder
             patternPicbox.SizeMode = PictureBoxSizeMode.StretchImage;
             source = new Bitmap(allPearlsPicbox.Image);
             pattern = new Bitmap(patternPicbox.Image);
+            //resizes so that it will scan faster
+            CustomResize(ref source, 3);
+            CustomResize(ref pattern, 3);
             Threshold(source, thresholdNum);
             testOutputPicBox.Image = pattern;
             patternPicbox.Image = Image.FromFile(@"PearlPattern.png");

@@ -35,6 +35,7 @@
             this.testOutputPicBox = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.showScanCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.allPearlsPicbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patternPicbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testOutputPicBox)).BeginInit();
@@ -71,7 +72,7 @@
             // findButton
             // 
             this.findButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.findButton.Location = new System.Drawing.Point(523, 225);
+            this.findButton.Location = new System.Drawing.Point(522, 246);
             this.findButton.Name = "findButton";
             this.findButton.Size = new System.Drawing.Size(70, 23);
             this.findButton.TabIndex = 3;
@@ -83,7 +84,7 @@
             // 
             this.testOutputPicBox.ErrorImage = null;
             this.testOutputPicBox.InitialImage = null;
-            this.testOutputPicBox.Location = new System.Drawing.Point(523, 149);
+            this.testOutputPicBox.Location = new System.Drawing.Point(522, 170);
             this.testOutputPicBox.Name = "testOutputPicBox";
             this.testOutputPicBox.Size = new System.Drawing.Size(70, 70);
             this.testOutputPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -93,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(520, 133);
+            this.label2.Location = new System.Drawing.Point(519, 154);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 5;
@@ -102,16 +103,27 @@
             // progressBar
             // 
             this.progressBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.progressBar.Location = new System.Drawing.Point(523, 254);
+            this.progressBar.Location = new System.Drawing.Point(522, 275);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(70, 20);
             this.progressBar.TabIndex = 7;
+            // 
+            // showScanCheckbox
+            // 
+            this.showScanCheckbox.AutoSize = true;
+            this.showScanCheckbox.Location = new System.Drawing.Point(522, 134);
+            this.showScanCheckbox.Name = "showScanCheckbox";
+            this.showScanCheckbox.Size = new System.Drawing.Size(81, 17);
+            this.showScanCheckbox.TabIndex = 8;
+            this.showScanCheckbox.Text = "Show Scan";
+            this.showScanCheckbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 529);
+            this.ClientSize = new System.Drawing.Size(604, 529);
+            this.Controls.Add(this.showScanCheckbox);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.testOutputPicBox);
@@ -142,6 +154,7 @@
         private System.Windows.Forms.PictureBox testOutputPicBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.CheckBox showScanCheckbox;
     }
 }
 
